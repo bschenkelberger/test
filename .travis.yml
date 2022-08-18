@@ -5,3 +5,12 @@ services:
 script:
   - docker build -t USERNAMEDOCKERHUP/node .
   - docker images USERNAMEDOCKERHUP/node
+
+before_deploy:
+  - docker login -u <username> -p <userpasswort>
+
+deploy:
+  provider: script
+  script: docker push USERNAMEDOCKERHUP/node
+  on:
+    branch: master
